@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+<title>AACodingFinal</title>
+<style>
+ul {
+  background: lavender;
+  font-size: 18px;
+}
+
+.correct {
+  background: lightgreen;
+}
+
+.incorrect {
+  background: red;
+}
+ol{
+background-image:url("https://images.unsplash.com/photo-1501630834273-4b5604d2ee31?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80");
+   margin-top: 0px;
+}
+
+h1{
+  background-color:#FBDBDB;
+  color:white;
+  margin-bottom: 0px;
+}
+</style>
+</head>
+<body translate="no">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<audio id="sad" controls>
+<source src="https://math.seattleacademy.org/garyanderson/snd/sad.mp3" type="audio/mpeg">
+Your browser does not support the audio tag
+</audio>
+<audio id="happy" controls>
+<source src="https://mail.google.com/mail/u/0?ui=2&ik=792383445c&attid=0.1&permmsgid=msg-f:1655954946837450470&th=16fb2240224c0ee6&view=att&disp=safe" type="audio/mpeg">
+Your browser does not support the audio tag
+</audio>
+<h1>Izzie's Awesome Math Problems</h1>
+<div>Timer: <span id="theTime">0</span> Score: <span id="score">0</span></div>
+<ol>
+<li> \( 2^3 \) <input data-correct="8" /> </li>
+<li> \( \sqrt[3]{8} \) <input data-correct="2" /></li>
+<li> \( 8^\frac{1}{3} \) <input data-correct="2" /></li>
+<li> \( 27^\frac{-2}{3} \) <input data-correct="1/9" /></li>
+<li> \( 64^\frac{1}{3} \) <input data-correct="4" /></li>
+<li> \( \sqrt[]{-16} \) <input data-correct="4i" /></li>
+<li> \( \sqrt[3]{343} \) <input data-correct="7" /></li>
+<li> \( 8^\frac{-2}{3} \) <input data-correct="1/4" /></li>
+<li>\( (\frac{-125}{27})^\tfrac{-2}{3} \) <input data-correct="9/25" /></li>
+<li> \( (-7)^3 \) <input data-correct="-343" /> </li>
+</ol>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+<script id="rendered-js">
+console.clear();
+const sad = document.getElementById("sad");
+console.clear();
+const happy = document.getElementById("happy");
+setInterval(upTime, 1000);
+
+function upTime() {
+  let theTime = Number($("#theTime").text());
+  theTime = theTime + 1;
+  $("#theTime").text(theTime);
+}
+$("input").change(onChange);
+
+function onChange(evt) {
+  let correct = $(this).data("correct");
+  let response = $(this).val();
+
+  if (correct == response) { {
+      happy.play();
+    }
+    $(this)
+      .removeClass("incorrect")
+      .addClass("correct");
+    let theScore = Number($("#score").text());
+    theScore = theScore + 1;
+    $("#score").text(theScore);
+  } else {
+    if (Math.random() > 0.1) {
+      sad.play();
+    }
+    $(this)
+      .removeClass("correct")
+      .addClass("incorrect");
+  }
+}
+    </script>
+</body>
+</html>
